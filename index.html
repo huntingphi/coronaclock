@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/clock.css">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script defer src="_javascript/clockscript.js"></script>
+  <!-- <script defer src="_javascript/fetchdata.js"></script> -->
+  <script defer>
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      var south_africa_data = null;
+      var global_data = null;
+      if (xhr.readyState === 4) {
+        var obj = JSON.parse(xhr.responseText)
+        for (let index = 0; index < obj.length; index++) {
+          const element = obj[index];
+          if (element.country == "South Africa") {
+            south_africa_data = element;
+          }
+          if (element.country == "World") {
+            global_data = element;
+          }
+          if (global_data && south_africa_data) {
+            break;
+          }
+
+        }
+
+        document.getElementById('south_africa_total_infections').innerHTML = JSON.stringify(south_africa_data.cases)
+        document.getElementById('south_africa_infections_today').innerHTML = JSON.stringify(south_africa_data.todayCases)
+        document.getElementById('south_africa_currently_infected').innerHTML = JSON.stringify(south_africa_data.active)
+        document.getElementById('south_africa_total_recovered').innerHTML = JSON.stringify(south_africa_data.recovered)
+        document.getElementById('south_africa_critical').innerHTML = JSON.stringify(south_africa_data.critical)
+        document.getElementById('south_africa_total_deaths').innerHTML = JSON.stringify(south_africa_data.deaths)
+
+        document.getElementById('global_total_infections').innerHTML = JSON.stringify(global_data.cases)
+        document.getElementById('global_infections_today').innerHTML = JSON.stringify(global_data.todayCases)
+        document.getElementById('global_currently_infected').innerHTML = JSON.stringify(global_data.active)
+        document.getElementById('global_total_recovered').innerHTML = JSON.stringify(global_data.recovered)
+        document.getElementById('global_critical').innerHTML = JSON.stringify(global_data.critical)
+        document.getElementById('global_total_deaths').innerHTML = JSON.stringify(global_data.deaths)
+
+
+      }
+    };
+    xhr.open('GET', 'https://coronavirus-19-api.herokuapp.com/countries');
+    xhr.send();
+  </script>
+
+  <title>Document</title>
+</head>
+
+<body>
+  <section class="hero is-info is-fullheight">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+
+        <div class="columns">
+          <div class="column">
+            <h1 class="title">🇿🇦</h1>
+
+            <div class="box"><span id="south_africa_total_infections" style="margin: 2px">1000</span><span
+                style="margin: 2px">Total infections </span></div>
+            <div class="box"><span id="south_africa_infections_today" style="margin: 2px">1000</span><span
+                style="margin: 2px">Today's
+                infections </span></div>
+            <div class="box"><span id="south_africa_currently_infected" style="margin: 2px">1000</span><span
+                style="margin: 2px">Currently infected </span></div>
+            <div class="box"><span id="south_africa_total_recovered" style="margin: 2px">1000</span><span
+                style="margin: 2px">Total recovered </span></div>
+            <div class="box"><span id="south_africa_critical" style="margin: 2px">1000</span><span
+                style="margin: 2px">Total
+                critical </span></div>
+            <div class="box"><span id="south_africa_total_deaths" style="margin: 2px">1000</span><span
+                style="margin: 2px">Total deaths </span></div>
+          </div>
+          <div class="column">
+            <h1 class="title">🌏</h1>
+            <div class="box"><span id="global_total_infections" style="margin: 2px">1000</span><span
+                style="margin: 2px">Total
+                infections </span></div>
+            <div class="box"><span id="global_infections_today" style="margin: 2px">1000</span><span
+                style="margin: 2px">Today's
+                infections </span></div>
+            <div class="box"><span id="global_currently_infected" style="margin: 2px">1000</span><span
+                style="margin: 2px">Currently infected </span></div>
+            <div class="box"><span id="global_total_recovered" style="margin: 2px">1000</span><span
+                style="margin: 2px">Total
+                recovered </span></div>
+            <div class="box"><span id="global_critical" style="margin: 2px">1000</span><span style="margin: 2px">Total
+                critical </span></div>
+            <div class="box"><span id="global_total_deaths" style="margin: 2px">1000</span><span
+                style="margin: 2px">Total
+                deaths </span></div>
+          </div>
+
+            <div class="column">
+            <h1 class="title">⏰</h1>
+              <div class="box">
+                <div id="clockdiv">
+                  <div>
+                    <span class="days"></span>
+                    <div class="smalltext">Days</div>
+                  </div>
+                  <div>
+                    <span class="hours"></span>
+                    <div class="smalltext">Hours</div>
+                  </div>
+                  <br>
+                  <br>
+                  <div>
+                    <span class="minutes"></span>
+                    <div class="smalltext">Minutes</div>
+                  </div>
+                  <div>
+                    <span class="seconds"></span>
+                    <div class="smalltext">Seconds</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+        </div>
+  </section>
+</body>
+
+</html>
