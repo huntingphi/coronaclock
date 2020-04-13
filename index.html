@@ -20,6 +20,7 @@
     xhr.onreadystatechange = function () {
       var south_africa_data = null;
       var global_data = null;
+      var africa_data = null;
       if (xhr.readyState === 4) {
         var obj = JSON.parse(xhr.responseText)
         for (let index = 0; index < obj.length; index++) {
@@ -30,7 +31,10 @@
           if (element.country == "World") {
             global_data = element;
           }
-          if (global_data && south_africa_data) {
+          if (element.country == "Africa") {
+            africa_data = element;
+          }
+          if (global_data && south_africa_data && africa_data) {
             break;
           }
 
@@ -50,12 +54,20 @@
         document.getElementById('global_critical').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(global_data.critical) + "</strong></p>"
         document.getElementById('global_total_deaths').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(global_data.deaths) + "</strong></p>"
 
+        document.getElementById('africa_total_infections').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(africa_data.cases) + "</strong></p>"
+        document.getElementById('africa_infections_today').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(africa_data.todayCases) + "</strong></p>"
+        document.getElementById('africa_currently_infected').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(africa_data.active) + "</strong></p>"
+        document.getElementById('africa_total_recovered').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(africa_data.recovered) + "</strong></p>"
+        document.getElementById('africa_critical').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(africa_data.critical) + "</strong></p>"
+        document.getElementById('africa_total_deaths').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(africa_data.deaths) + "</strong></p>"
+
 
       }
     };
     xhr.open('GET', 'https://coronavirus-19-api.herokuapp.com/countries');
     xhr.send();
   }
+  getData()
   setInterval(getData,60000)
   </script>
 
@@ -101,6 +113,34 @@
         <div class="item-2 container is-fluid">
           <container style="text-align: center" class>
             <div class="container is-fluid is-widescreen">
+              <h1 class="title" style="margin: 2px;">AFRICA</h1>
+            </div>
+          </container>
+          <br>
+          <div class="columns is-mobile">
+            <div class="column">
+              <ul class="block-list is-small is-outlined is-primary is-centered">
+                <li><span id="africa_total_infections">1000</span><span style="margin: 2px">Total Infected
+                  </span></li>
+                <li><span id="africa_infections_today">1000</span><span style="margin: 2px">Infected Today</span></li>
+                <li><span id="africa_currently_infected">1000</span><span style="margin: 2px">Infected Now
+                  </span></li>
+              </ul>
+            </div>
+            <div class="column">
+              <ul class="block-list is-small is-outlined is-primary is-centered">
+                <li><span id="africa_total_recovered">1000</span><span style="margin: 2px">Recovered
+                  </span></li>
+                <li><span id="africa_critical">1000</span><span style="margin: 2px">Critical</span></li>
+                <li><span id="africa_total_deaths">1000</span><span style="margin: 2px">Deaths
+                  </span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="item-3 container is-fluid">
+          <container style="text-align: center" class>
+            <div class="container is-fluid is-widescreen">
               <h1 class="title" style="margin: 2px;">GLOBAL</h1>
             </div>
           </container>
@@ -126,8 +166,8 @@
             </div>
           </div>
         </div>
-        <div class="item-3">
-          <div class="column">
+        <div class="item-4 container is-fluid">
+          <!-- <div class="column"> -->
             <container style="text-align: center" class>
               <div class="container is-fluid is-widescreen">
                 <h1 class="title" style="margin: 2px;">⏰ LOCKDOWN</h1>
@@ -135,7 +175,7 @@
             </container>
             <br>
             <div class="box has-text-centered">
-              <div class="container is-center">
+              <div class="container is-center is-fluid">
                 <div id="clockdiv">
                   <div>
                     <span class="days"></span>
@@ -157,7 +197,7 @@
               </div>
             </div>
 
-          </div>
+          <!-- </div> -->
         </div>
         <!-- <div class="hero-head"></div> -->
         <!-- <div class="hero-body"></div> -->
