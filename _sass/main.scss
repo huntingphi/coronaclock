@@ -27,9 +27,11 @@ $primary-invert: $pink-invert;
 */
 
 @import "../node_modules/bulma/bulma";
-
+@import "node_modules/bulma-block-list/src/block-list";
+ 
 .box  {
   color: #333;
+  
 }
 
 .actions {
@@ -39,3 +41,5 @@ $primary-invert: $pink-invert;
     margin-right: 8px;
   }
 }
+
+

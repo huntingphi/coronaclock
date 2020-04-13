@@ -5,13 +5,17 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/clock.css">
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <script defer src="_javascript/clockscript.js"></script>
   <!-- <script defer src="_javascript/fetchdata.js"></script> -->
+
   <script defer>
+    function getData(){
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
       var south_africa_data = null;
@@ -32,77 +36,107 @@
 
         }
 
-        document.getElementById('south_africa_total_infections').innerHTML = JSON.stringify(south_africa_data.cases)
-        document.getElementById('south_africa_infections_today').innerHTML = JSON.stringify(south_africa_data.todayCases)
-        document.getElementById('south_africa_currently_infected').innerHTML = JSON.stringify(south_africa_data.active)
-        document.getElementById('south_africa_total_recovered').innerHTML = JSON.stringify(south_africa_data.recovered)
-        document.getElementById('south_africa_critical').innerHTML = JSON.stringify(south_africa_data.critical)
-        document.getElementById('south_africa_total_deaths').innerHTML = JSON.stringify(south_africa_data.deaths)
+        document.getElementById('south_africa_total_infections').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(south_africa_data.cases) + "</strong></p>"
+        document.getElementById('south_africa_infections_today').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(south_africa_data.todayCases) + "</strong></p>"
+        document.getElementById('south_africa_currently_infected').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(south_africa_data.active) + "</strong></p>"
+        document.getElementById('south_africa_total_recovered').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(south_africa_data.recovered) + "</strong></p>"
+        document.getElementById('south_africa_critical').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(south_africa_data.critical) + "</strong></p>"
+        document.getElementById('south_africa_total_deaths').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(south_africa_data.deaths) + "</strong></p>"
 
-        document.getElementById('global_total_infections').innerHTML = JSON.stringify(global_data.cases)
-        document.getElementById('global_infections_today').innerHTML = JSON.stringify(global_data.todayCases)
-        document.getElementById('global_currently_infected').innerHTML = JSON.stringify(global_data.active)
-        document.getElementById('global_total_recovered').innerHTML = JSON.stringify(global_data.recovered)
-        document.getElementById('global_critical').innerHTML = JSON.stringify(global_data.critical)
-        document.getElementById('global_total_deaths').innerHTML = JSON.stringify(global_data.deaths)
+        document.getElementById('global_total_infections').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(global_data.cases) + "</strong></p>"
+        document.getElementById('global_infections_today').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(global_data.todayCases) + "</strong></p>"
+        document.getElementById('global_currently_infected').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(global_data.active) + "</strong></p>"
+        document.getElementById('global_total_recovered').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(global_data.recovered) + "</strong></p>"
+        document.getElementById('global_critical').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(global_data.critical) + "</strong></p>"
+        document.getElementById('global_total_deaths').innerHTML = "<p class=\"subtitle is-5\"><strong>" + JSON.stringify(global_data.deaths) + "</strong></p>"
 
 
       }
     };
     xhr.open('GET', 'https://coronavirus-19-api.herokuapp.com/countries');
     xhr.send();
+    console.log("HELLO")
+  }
+  setInterval(getData,10000)
   </script>
 
-  <title>Document</title>
+  <title>Covid-clock</title>
+
+
 </head>
 
 <body>
-  <section class="hero is-info is-fullheight">
+  <section class="hero is-dark is-fullheight has-carousel">
     <div class="hero-body">
-      <div class="container has-text-centered">
-
-        <div class="columns">
-          <div class="column">
-            <h1 class="title">🇿🇦</h1>
-
-            <div class="box"><span id="south_africa_total_infections" style="margin: 2px">1000</span><span
-                style="margin: 2px">Total infections </span></div>
-            <div class="box"><span id="south_africa_infections_today" style="margin: 2px">1000</span><span
-                style="margin: 2px">Today's
-                infections </span></div>
-            <div class="box"><span id="south_africa_currently_infected" style="margin: 2px">1000</span><span
-                style="margin: 2px">Currently infected </span></div>
-            <div class="box"><span id="south_africa_total_recovered" style="margin: 2px">1000</span><span
-                style="margin: 2px">Total recovered </span></div>
-            <div class="box"><span id="south_africa_critical" style="margin: 2px">1000</span><span
-                style="margin: 2px">Total
-                critical </span></div>
-            <div class="box"><span id="south_africa_total_deaths" style="margin: 2px">1000</span><span
-                style="margin: 2px">Total deaths </span></div>
-          </div>
-          <div class="column">
-            <h1 class="title">🌏</h1>
-            <div class="box"><span id="global_total_infections" style="margin: 2px">1000</span><span
-                style="margin: 2px">Total
-                infections </span></div>
-            <div class="box"><span id="global_infections_today" style="margin: 2px">1000</span><span
-                style="margin: 2px">Today's
-                infections </span></div>
-            <div class="box"><span id="global_currently_infected" style="margin: 2px">1000</span><span
-                style="margin: 2px">Currently infected </span></div>
-            <div class="box"><span id="global_total_recovered" style="margin: 2px">1000</span><span
-                style="margin: 2px">Total
-                recovered </span></div>
-            <div class="box"><span id="global_critical" style="margin: 2px">1000</span><span style="margin: 2px">Total
-                critical </span></div>
-            <div class="box"><span id="global_total_deaths" style="margin: 2px">1000</span><span
-                style="margin: 2px">Total
-                deaths </span></div>
-          </div>
-
+      <div id="carousel-demo" class="hero-carousel">
+        <div class="item-1 container is-fluid">
+          <container style="text-align: center" class>
+            <div class="container is-fluid is-widescreen">
+              <h1 class="title" style="margin: 2px;">SOUTH AFRICA</h1>
+            </div>
+          </container>
+          <br>
+          <div class="columns is-mobile">
             <div class="column">
-            <h1 class="title">⏰</h1>
-              <div class="box">
+              <ul class="block-list is-small is-outlined is-primary is-centered">
+                <li><span id="south_africa_total_infections">1000</span><span style="margin: 2px">Total Infected
+                  </span></li>
+                <li><span id="south_africa_infections_today">1000</span><span style="margin: 2px">Infected Today</span>
+                </li>
+                <li><span id="south_africa_currently_infected">1000</span><span style="margin: 2px">Infected Now
+                  </span></li>
+              </ul>
+            </div>
+            <div class="column">
+              <ul class="block-list is-small is-outlined is-primary is-centered">
+                <li><span id="south_africa_total_recovered">1000</span><span style="margin: 2px">Recovered
+                  </span></li>
+                <li><span id="south_africa_critical">1000</span><span style="margin: 2px">Critical</span></li>
+                <li><span id="south_africa_total_deaths">1000</span><span style="margin: 2px">Deaths
+                  </span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="item-2 container is-fluid">
+          <container style="text-align: center" class>
+            <div class="container is-fluid is-widescreen">
+              <h1 class="title" style="margin: 2px;">GLOBAL</h1>
+            </div>
+          </container>
+          <br>
+          <div class="columns is-mobile">
+            <div class="column">
+              <ul class="block-list is-small is-outlined is-primary is-centered">
+                <li><span id="global_total_infections">1000</span><span style="margin: 2px">Total Infected
+                  </span></li>
+                <li><span id="global_infections_today">1000</span><span style="margin: 2px">Infected Today</span></li>
+                <li><span id="global_currently_infected">1000</span><span style="margin: 2px">Infected Now
+                  </span></li>
+              </ul>
+            </div>
+            <div class="column">
+              <ul class="block-list is-small is-outlined is-primary is-centered">
+                <li><span id="global_total_recovered">1000</span><span style="margin: 2px">Recovered
+                  </span></li>
+                <li><span id="global_critical">1000</span><span style="margin: 2px">Critical</span></li>
+                <li><span id="global_total_deaths">1000</span><span style="margin: 2px">Deaths
+                  </span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="item-3">
+          <div class="column">
+            <container style="text-align: center" class>
+              <div class="container is-fluid is-widescreen">
+                <h1 class="title" style="margin: 2px;">⏰ LOCKDOWN</h1>
+              </div>
+            </container>
+            <br>
+            <div class="box has-text-centered">
+              <div class="container is-center">
                 <div id="clockdiv">
                   <div>
                     <span class="days"></span>
@@ -112,8 +146,6 @@
                     <span class="hours"></span>
                     <div class="smalltext">Hours</div>
                   </div>
-                  <br>
-                  <br>
                   <div>
                     <span class="minutes"></span>
                     <div class="smalltext">Minutes</div>
@@ -124,11 +156,22 @@
                   </div>
                 </div>
               </div>
-
             </div>
 
+          </div>
         </div>
+        <!-- <div class="hero-head"></div> -->
+        <!-- <div class="hero-body"></div> -->
+        <!-- <div class="hero-foot"></div> -->
   </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js"></script>
+  <script>
+    bulmaCarousel.attach('#carousel-demo', {
+      slidesToScroll: 1,
+      slidesToShow: 1
+    });
+  </script>
 </body>
 
 </html>
