@@ -1,3 +1,4 @@
+![made-with-bulma](https://raw.githubusercontent.com/huntingphi/coronaclock/master/made-with-bulma.png)
 # [CoronaClock](https://coronaclock.surge.sh)
 
 CoronaClock is a webapp that gives information on South Africa, Africa and Global coronavirus numbers. 
