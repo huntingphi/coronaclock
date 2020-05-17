@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+  - node_modules
+
+before_deploy:
+  "echo 'ready?'"
+
+deploy:
+  provider: surge
+  project: ./
+  domain: coronaclock.surge.sh
+  edge: true
+  
+after_deploy:
+  "echo 'done🥂'"
