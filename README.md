@@ -8,7 +8,7 @@ It used to include a lockdown countdown which would count down the number of day
 
 - Vanilla JS
 - [Bulma](bulma.io) for styling
-- [surge.sh] for deployment
+- [surge.sh](for deployment)
 
 
 ## Contributing
